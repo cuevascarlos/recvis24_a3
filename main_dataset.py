@@ -251,7 +251,7 @@ def main():
     ds_val = load_dataset("cuevascarlos/ImageNet-Sketch-Embed", split="validation")
     
     #Map labels to values taking into account the tuples of class2category.csv
-    class2category = pd.read_csv('../class2category.csv', header=0, names=['class', 'category'])
+    class2category = pd.read_csv('class2category.csv', header=0, names=['class', 'category'])
     label_map = dict(zip(class2category['class'], class2category['category']))
     ds_train_f = ds_train.map(map_labels, fn_kwargs={"label_map": label_map})
     ds_val_f = ds_val.map(map_labels, fn_kwargs={"label_map": label_map})
