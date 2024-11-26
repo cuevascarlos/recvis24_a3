@@ -9,7 +9,6 @@ import gc
 import pandas as pd
 import argparse
 
-'''
 parser = argparse.ArgumentParser(description="RecVis A3 auxiliar dataset script")
 parser.add_argument(
         "--batch-size",
@@ -20,8 +19,7 @@ parser.add_argument(
     )
 args = parser.parse_args()
 batch_size = args.batch_size
-'''
-batch_size = 16
+
 
 class ImageTextDataset(Dataset):
     def __init__(self, save_path="./dataset.parquet"):
