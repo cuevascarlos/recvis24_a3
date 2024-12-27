@@ -77,15 +77,6 @@ class MultiEmbeddingsClassifier(nn.Module):
         x = self.classifier(x)
         return x
 
-'''
-First attempt and fourth: dropout_rate = 0.2
-Second attempt: dropout_rate = 0.5
-Third attempt: dropout_rate = 0.5 y 3 linear layers
-5: dropout_rate = 0.2 y multiheadattention
-6: dropout_rate = 0.2 y mean text embeddings y 2 linear layers (no hecho)
-7: dropout_rate = 0.2 y mean text embeddings y 3 linear layers
-8: dropout_rate = 0.2 y mean text embeddings y 3 linear layers y mean embed en segunda
-'''
 
 class FusionClassifier(nn.Module):
     def __init__(self, visual_dim, textual_dim, fusion_dim, num_classes=500, dropout_rate=0.2):
@@ -146,11 +137,3 @@ class DoubleModel(nn.Module):
         combined_logits = torch.stack([visual_logits, textual_logits], dim=-1)
         output_logits = self.weight_layer(combined_logits).squeeze(-1)
         return output_logits
-
-'''
-1: 10 epochs
-2: 15 epochs
-3: 10 epochs y parametros aprendibles alpha y beta + penalización que sumen 1 0.001
-4 y 6: 10 epochs + parametros aprendibles alpha y beta + penalización que sumen 1 y sean positivos 0.1
-5: 10 epochs + parametros aprendibles alpha y beta + penalización que sumen 1 y sean positivos 0.3
-'''
